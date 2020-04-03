@@ -7,6 +7,28 @@ import FailedJobSchema from '../src/local-db/FailedJobSchema';
  */
 export default class RealmAdapter {
     /**
+     * RealmAdapter constructor
+     * @param jobPrototype
+     */
+    constructor(jobPrototype) {
+        this.jobPrototype = jobPrototype
+    }
+
+    /**
+     * get job instance
+     *
+     * @returns {any}
+     */
+    getJobInstance(data) {
+        const object = Object.create(this.jobPrototype).constructor;
+        return new object({
+            id: data[0].id,
+            name: data[0].name,
+            param: data[0].param,
+            priority: data[0].priority,
+        });
+    }
+    /**
      * Method to get all items
      * @returns {[]|*[]}
      */
