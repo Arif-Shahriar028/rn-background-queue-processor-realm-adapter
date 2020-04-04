@@ -26,6 +26,8 @@ export default class RealmAdapter {
             name: data[0].name,
             param: data[0].param,
             priority: data[0].priority,
+            retryInterval: data[0].retryInterval,
+            maxRetries: data[0].maxRetries,
         });
     }
     /**
@@ -82,11 +84,15 @@ export default class RealmAdapter {
         const {name} = job;
         const param = JSON.stringify(job.param);
         const {priority} = job;
+        const {retryInterval} = job;
+        const {maxRetries} = job;
         const jobToBeCreated = {
             [FailedJobSchema.COLUMN_ID]: id,
             [FailedJobSchema.COLUMN_NAME]: name,
             [FailedJobSchema.COLUMN_PARAM]: param,
             [FailedJobSchema.COLUMN_PRIORITY]: priority,
+            [FailedJobSchema.COLUMN_RETRY_INTERVAL]: retryInterval,
+            [FailedJobSchema.COLUMN_MAX_RETRIES]: maxRetries,
         };
         realmdb.write(() => {
             realmdb.create(FailedJobSchema.NAME, jobToBeCreated);
@@ -103,11 +109,15 @@ export default class RealmAdapter {
         const {name} = job;
         const param = JSON.stringify(job.param);
         const {priority} = job;
+        const {retryInterval} = job;
+        const {maxRetries} = job;
         const jobToBeCreated = {
             [JobSchema.COLUMN_ID]: id,
             [JobSchema.COLUMN_NAME]: name,
             [JobSchema.COLUMN_PARAM]: param,
             [JobSchema.COLUMN_PRIORITY]: priority,
+            [JobSchema.COLUMN_RETRY_INTERVAL]: retryInterval,
+            [JobSchema.COLUMN_MAX_RETRIES]: maxRetries,
         };
         realmdb.write(() => {
             realmdb.create(JobSchema.NAME, jobToBeCreated);

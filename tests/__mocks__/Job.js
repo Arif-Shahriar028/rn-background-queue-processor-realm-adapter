@@ -12,5 +12,7 @@ export default class Job {
         this.job.priority = dbJob.priority
             ? ( (dbJob.priority >= 1 && dbJob.priority <= 10) ? dbJob.priority : 10)
             : 10;
+        this.job.retryInterval = dbJob.retryInterval ? dbJob.retryInterval : 2000;
+        this.job.maxRetries = dbJob.maxRetries ? dbJob.maxRetries : 5;
     }
 }

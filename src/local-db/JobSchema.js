@@ -54,6 +54,26 @@ export default class JobSchema extends Realm.Object {
     static get COLUMN_PARAM() {
         return 'param';
     }
+
+    /**
+     * retryInterval column
+     *
+     * @return {string}
+     * @constructor
+     */
+    static get COLUMN_RETRY_INTERVAL() {
+        return 'retryInterval';
+    }
+
+    /**
+     * maxRetries column
+     *
+     * @return {string}
+     * @constructor
+     */
+    static get COLUMN_MAX_RETRIES() {
+        return 'maxRetries';
+    }
 }
 
 JobSchema.schema = {
@@ -64,5 +84,7 @@ JobSchema.schema = {
         [JobSchema.COLUMN_NAME]: 'string',
         [JobSchema.COLUMN_PARAM]: 'string',
         [JobSchema.COLUMN_PRIORITY]: 'int',
+        [JobSchema.COLUMN_RETRY_INTERVAL]: 'init',
+        [JobSchema.COLUMN_MAX_RETRIES]: 'init',
     },
 };

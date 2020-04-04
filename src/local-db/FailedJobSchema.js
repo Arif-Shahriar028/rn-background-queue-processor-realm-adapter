@@ -54,6 +54,26 @@ export default class FailedJobSchema extends Realm.Object {
     static get COLUMN_PARAM() {
         return 'param';
     }
+
+    /**
+     * retryInterval column
+     *
+     * @return {string}
+     * @constructor
+     */
+    static get COLUMN_RETRY_INTERVAL() {
+        return 'retryInterval';
+    }
+
+    /**
+     * maxRetries column
+     *
+     * @return {string}
+     * @constructor
+     */
+    static get COLUMN_MAX_RETRIES() {
+        return 'maxRetries';
+    }
 }
 
 FailedJobSchema.schema = {
@@ -64,5 +84,7 @@ FailedJobSchema.schema = {
         [FailedJobSchema.COLUMN_NAME]: 'string',
         [FailedJobSchema.COLUMN_PARAM]: 'string',
         [FailedJobSchema.COLUMN_PRIORITY]: 'int',
+        [FailedJobSchema.COLUMN_RETRY_INTERVAL]: 'init',
+        [FailedJobSchema.COLUMN_MAX_RETRIES]: 'init',
     },
 };

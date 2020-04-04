@@ -27,12 +27,16 @@ describe('Test RealmAdapter', () => {
             [JobSchema.COLUMN_NAME]: jobToBeCreated1.name,
             [JobSchema.COLUMN_PARAM]: JSON.stringify(jobToBeCreated1.param),
             [JobSchema.COLUMN_PRIORITY]: jobToBeCreated1.priority,
+            [JobSchema.COLUMN_RETRY_INTERVAL]: jobToBeCreated1.retryInterval,
+            [JobSchema.COLUMN_MAX_RETRIES]: jobToBeCreated1.maxRetries,
         };
         const entity2 = {
             [JobSchema.COLUMN_ID]: jobToBeCreated2.id,
             [JobSchema.COLUMN_NAME]: jobToBeCreated2.name,
             [JobSchema.COLUMN_PARAM]: JSON.stringify(jobToBeCreated2.param),
             [JobSchema.COLUMN_PRIORITY]: jobToBeCreated2.priority,
+            [JobSchema.COLUMN_RETRY_INTERVAL]: jobToBeCreated1.retryInterval,
+            [JobSchema.COLUMN_MAX_RETRIES]: jobToBeCreated1.maxRetries,
         };
         setTimeout(() => {
             expect(realmdb.create).toHaveBeenCalledTimes(2);
@@ -49,19 +53,21 @@ describe('Test RealmAdapter', () => {
     test('should test addFailedItem', (done) => {
         realmdb.mockClear();
         const adapter = new RealmAdapter();
-        const jobToBeCreated1 = {
+        const jobToBeCreated = {
             id: 'testid',
             name: 'testJob1',
             param: {'a':1},
             priority: 1,
         };
-        const job1 = new Job(jobToBeCreated1);
-        adapter.addFailedItem(job1);
+        const job = new Job(jobToBeCreated);
+        adapter.addFailedItem(job);
         const entity1 = {
-            [FailedJobSchema.COLUMN_ID]: jobToBeCreated1.id,
-            [FailedJobSchema.COLUMN_NAME]: jobToBeCreated1.name,
-            [FailedJobSchema.COLUMN_PARAM]: JSON.stringify(jobToBeCreated1.param),
-            [FailedJobSchema.COLUMN_PRIORITY]: jobToBeCreated1.priority,
+            [FailedJobSchema.COLUMN_ID]: jobToBeCreated.id,
+            [FailedJobSchema.COLUMN_NAME]: jobToBeCreated.name,
+            [FailedJobSchema.COLUMN_PARAM]: JSON.stringify(jobToBeCreated.param),
+            [FailedJobSchema.COLUMN_PRIORITY]: jobToBeCreated.priority,
+            [FailedJobSchema.COLUMN_RETRY_INTERVAL]: jobToBeCreated.retryInterval,
+            [FailedJobSchema.COLUMN_MAX_RETRIES]: jobToBeCreated.maxRetries
         };
         setTimeout(() => {
             expect(realmdb.create).toHaveBeenCalledTimes(1);
@@ -145,5 +151,7 @@ describe('Test RealmAdapter', () => {
         expect(item.job.name).toBe('testJob');
         expect(item.job.param).toBe('testParam');
         expect(item.job.priority).toBe(1);
+        expect(item.job.retryInterval).toBe(2000);
+        expect(item.job.maxRetries).toBe(5);
     });
 });
