@@ -84,7 +84,7 @@ FailedJobSchema.schema = {
         [FailedJobSchema.COLUMN_NAME]: 'string',
         [FailedJobSchema.COLUMN_PARAM]: 'string',
         [FailedJobSchema.COLUMN_PRIORITY]: 'int',
-        [FailedJobSchema.COLUMN_RETRY_INTERVAL]: 'init',
-        [FailedJobSchema.COLUMN_MAX_RETRIES]: 'init',
+        [FailedJobSchema.COLUMN_RETRY_INTERVAL]: 'int',
+        [FailedJobSchema.COLUMN_MAX_RETRIES]: 'int',
     },
 };

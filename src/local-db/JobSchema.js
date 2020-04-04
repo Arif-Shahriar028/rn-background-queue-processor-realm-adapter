@@ -84,7 +84,7 @@ JobSchema.schema = {
         [JobSchema.COLUMN_NAME]: 'string',
         [JobSchema.COLUMN_PARAM]: 'string',
         [JobSchema.COLUMN_PRIORITY]: 'int',
-        [JobSchema.COLUMN_RETRY_INTERVAL]: 'init',
-        [JobSchema.COLUMN_MAX_RETRIES]: 'init',
+        [JobSchema.COLUMN_RETRY_INTERVAL]: 'int',
+        [JobSchema.COLUMN_MAX_RETRIES]: 'int',
     },
 };
