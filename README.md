@@ -13,7 +13,7 @@ Here is a [working demo app](https://github.com/technogise/rn-background-queue-p
 - Two schema are there to store all jobs and Failed jobs 
 - Job Schema contains all the Jobs ready for execution 
 - Failed Schema have all the failed jobs after queue execution
-- Jobs are send for execution according to its priority
+- Jobs are sent for execution according to its priority
 
 Functions that are used in [rn-background-queue-processor](https://github.com/technogise/rn-background-queue-processor) are -
 - `addItem(job)`: Method to add a job in JobSchema
