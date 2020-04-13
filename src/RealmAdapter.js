@@ -38,6 +38,9 @@ export default class RealmAdapter {
         return realmdb.objects(JobSchema.NAME);
     }
 
+    /**
+     * add failed items in Job Schema
+     */
     addFailedItems() {
         const failedItems = realmdb.objects(FailedJobSchema.NAME);
         while (failedItems.length > 0) {
