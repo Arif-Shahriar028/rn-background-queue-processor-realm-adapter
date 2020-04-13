@@ -23,6 +23,7 @@ Functions that are used in [rn-background-queue-processor](https://github.com/te
 - `getTopItem`: Method to get high priority Job
 - `getAllItems`: To get all jobs
 - `getJobInstance`: Method to get job instance
+- `addFailedItems`: Method to add failed jobs in JobSchema
 
 
 #### Installation steps
