@@ -38,6 +38,33 @@ export default class RealmAdapter {
         return realmdb.objects(JobSchema.NAME);
     }
 
+    addFailedItems() {
+        const failedItems = realmdb.objects(FailedJobSchema.NAME);
+        while (failedItems.length > 0) {
+            let item = 0;
+            const instance = Object.create(this.jobPrototype).constructor;
+            const failedItem = new instance({
+                id: failedItems[item].id,
+                name: failedItems[item].name,
+                param: failedItems[item].param,
+                priority: failedItems[item].priority,
+                retryInterval: failedItems[item].retryInterval,
+                maxRetries: failedItems[item].maxRetries,
+            });
+            this.addItem(failedItem);
+            const {id} = failedItems[item];
+            const object = realmdb
+                .objects(FailedJobSchema.NAME)
+                .filtered(`${FailedJobSchema.COLUMN_ID} = '${id}'`);
+            if (object) {
+                realmdb.write(() => {
+                    realmdb.delete(object);
+                });
+            }
+            item += 1;
+        }
+    }
+
     /**
      * remove topmost element
      *
