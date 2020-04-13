@@ -1,7 +1,7 @@
 {
-  "name": "rn-background-queue-processor-realm-adapter",
+  "name": "@technogise/rn-background-queue-processor-realm-adapter",
   "version": "1.0.0",
-  "description": "",
+  "description": "This package is designed for [rn-background-queue-processor](https://github.com/technogise/rn-background-queue-processor) to store Jobs in persistent Realm storage.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -41,9 +41,17 @@
     }
   },
   "directories": {
-    "example": "examples",
     "test": "tests"
   },
+  "keywords": [
+    "react",
+    "react-native",
+    "realm",
+    "persistent",
+    "queue",
+    "job-queue",
+    "job"
+  ],
   "dependencies": {
     "realm": "^5.0.3",
     "underscore": "^1.10.2"
